@@ -14,14 +14,14 @@ export default function AlarmsScreen() {
         {metrics.map((row) => {
           return (
             <View style={styles.gaugeRow}>
-              {row.map((metricsToDisplay: Parameter) => {
+              {row.map((metricToDisplay: Parameter) => {
                 return (
                   <DetailedAlarmMetricDisplay
-                    title={metricsToDisplay.title}
-                    value={metricsToDisplay.value}
-                    unit={metricsToDisplay.unit}
-                    lowerLimit={metricsToDisplay.lowerLimit}
-                    upperLimit={metricsToDisplay.upperLimit}
+                    title={metricToDisplay.title}
+                    value={metricToDisplay.value}
+                    unit={metricToDisplay.unit}
+                    lowerLimit={metricToDisplay.lowerLimit}
+                    upperLimit={metricToDisplay.upperLimit}
                   />
                 );
               })}

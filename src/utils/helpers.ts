@@ -1,20 +1,18 @@
 import { Parameter } from 'src/Interfaces/Parameter';
 
 export function parameterArrayToMatrix(
-  arrayOfParameters: Array<Parameter>,
-  parametersPerSubArray: number,
+  arrayToConvert: Array<Parameter>,
+  itemsPerRow: number,
 ) {
   const matrix: Array<Array<Parameter>> = [];
-  let i;
-  let k;
 
-  for (i = 0, k = -1; i < arrayOfParameters.length; i++) {
-    if (i % parametersPerSubArray === 0) {
+  for (let i = 0, k = -1; i < arrayToConvert.length; i++) {
+    if (i % itemsPerRow === 0) {
       k++;
       matrix[k] = [];
     }
 
-    matrix[k].push(arrayOfParameters[i]);
+    matrix[k].push(arrayToConvert[i]);
   }
   return matrix;
 }
