@@ -1,18 +1,19 @@
-import { Parameter } from 'src/Interfaces/Parameter';
-
-export function parameterArrayToMatrix(
-  arrayToConvert: Array<Parameter>,
+export function convertArrayToMatrix<T>(
+  arrayToConvert: Array<T>,
   itemsPerRow: number,
-) {
-  const matrix: Array<Array<Parameter>> = [];
+): Array<Array<T>> {
+  const matrix: Array<Array<T>> = [];
 
-  for (let i = 0, k = -1; i < arrayToConvert.length; i++) {
-    if (i % itemsPerRow === 0) {
-      k++;
-      matrix[k] = [];
+  for (
+    let itemIndex = 0, rowIndex = -1;
+    itemIndex < arrayToConvert.length;
+    itemIndex++
+  ) {
+    if (itemIndex % itemsPerRow === 0) {
+      rowIndex++;
+      matrix[rowIndex] = [];
     }
-
-    matrix[k].push(arrayToConvert[i]);
+    matrix[rowIndex].push(arrayToConvert[itemIndex]);
   }
   return matrix;
 }

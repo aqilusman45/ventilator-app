@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import DetailedAlarmMetricDisplay from '../components/DetailedAlarmMetricDisplay';
-import { parameterArrayToMatrix } from '../utils/helpers';
+import { convertArrayToMatrix } from '../utils/helpers';
 import { alarmsMetrics } from '../../sample-data/data';
 import { Parameter } from '../Interfaces/Parameter';
 
 export default function AlarmsScreen() {
-  const metrics = parameterArrayToMatrix(alarmsMetrics, 4);
+  const metrics = convertArrayToMatrix<Parameter>(alarmsMetrics, 4);
 
   return (
     <View style={styles.gaugeContainer}>
@@ -14,7 +14,7 @@ export default function AlarmsScreen() {
         {metrics.map((row) => {
           return (
             <View style={styles.gaugeRow}>
-              {row.map((metricToDisplay: Parameter) => {
+              {row.map((metricToDisplay) => {
                 return (
                   <DetailedAlarmMetricDisplay
                     title={metricToDisplay.title}
