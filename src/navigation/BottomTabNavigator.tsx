@@ -44,14 +44,28 @@ export default function BottomTabNavigator({
       />
       <BottomTab.Screen
         name="Monitoring"
-        component={LinksScreen}
         options={{
           title: 'Monitoring',
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="md-book" />
           ),
-        }}
-      />
+        }}>
+        {(props) => (
+          <LinksScreen icon="md-school" label="Monitoring" {...props} />
+        )}
+      </BottomTab.Screen>
+      <BottomTab.Screen
+        name="Configurations"
+        options={{
+          title: 'Configurations',
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon focused={focused} name="md-settings" />
+          ),
+        }}>
+        {(props) => (
+          <LinksScreen icon="md-school" label="Configurations" {...props} />
+        )}
+      </BottomTab.Screen>
     </BottomTab.Navigator>
   );
 }
@@ -73,5 +87,7 @@ function getHeaderTitle(route: any) {
       return 'Lung Mechanics';
     case 'Graphs':
       return 'Graphs';
+    case 'Configurations':
+      return 'Configurations';
   }
 }
