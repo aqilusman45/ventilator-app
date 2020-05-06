@@ -3,20 +3,14 @@ import { StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import OptionButton from '../components/OptionButton';
 
-export default function LinksScreen({
-  icon,
-  label,
-}: {
-  icon: string;
-  label: string;
-}) {
+export default function LinksScreen() {
   return (
     <ScrollView
       style={styles.container}
       contentContainerStyle={styles.contentContainer}>
       <OptionButton
-        icon={icon}
-        label={label}
+        icon="md-school"
+        label="Configurations"
         isLastOption={() => {}}
         onPress={() => {}}
       />
