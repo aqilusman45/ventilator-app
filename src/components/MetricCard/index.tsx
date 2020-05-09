@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import Colors from '../../constants/Colors';
 
@@ -13,12 +13,20 @@ import {
   PresetValue,
   ValueWrapper,
 } from './styles';
+import SetParameter from 'src/interfaces/SetParameter';
 
-export default function MetricCard(props: any) {
-  const colour = getStateColour(props.state);
+const MetricCard = ({
+  metric,
+  state,
+}: {
+  metric: SetParameter;
+  state: string;
+}) => {
+  const { upperLimit, lowerLimit, setValue, value, unit } = metric;
 
-  function getStateColour(state: string) {
-    switch (state) {
+  const colour = getStateColour(state);
+  function getStateColour(stateColor: string) {
+    switch (stateColor) {
       case 'warning':
         return Colors.warningText;
       case 'alarm':
@@ -32,21 +40,23 @@ export default function MetricCard(props: any) {
     <MetricContainer>
       <LimitsContainer>
         <LimitWrapper>
-          <LimitValue>{parseFloat(props.upperLimit).toFixed(1)}</LimitValue>
+          <LimitValue>{upperLimit.toFixed(1)}</LimitValue>
         </LimitWrapper>
         <LimitWrapper>
-          <LimitValue>{props.lowerLimit}</LimitValue>
+          <LimitValue>{lowerLimit}</LimitValue>
         </LimitWrapper>
       </LimitsContainer>
       <CurrentValueContainer>
         <View style={{ flex: 1, justifyContent: 'center' }}>
-          <PresetValue>{props.setValue}</PresetValue>
+          <PresetValue>{setValue}</PresetValue>
         </View>
         <ValueWrapper>
-          <Value color={colour}>{parseFloat(props.value).toFixed(0)}</Value>
-          <Unit>{props.unit}</Unit>
+          <Value color={colour}>{value.toFixed(0)}</Value>
+          <Unit>{unit}</Unit>
         </ValueWrapper>
       </CurrentValueContainer>
     </MetricContainer>
   );
-}
+};
+
+export default MetricCard;

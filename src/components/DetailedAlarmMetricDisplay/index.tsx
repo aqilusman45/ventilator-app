@@ -1,36 +1,19 @@
-import * as React from 'react';
+import React from 'react';
 import MetricCard from '../MetricCard';
-import Colors from '../../constants/Colors';
 import {
   ParameterCard,
   ParameterHeader,
   ParameterHeaderText,
   MetricView,
 } from './styles';
-import { Parameter } from 'src/interfaces/Parameter';
 import SetParameter from 'src/interfaces/SetParameter';
-import { VentilationMode } from 'src/models/VentilationMode';
 
-export default function DetailedAlarmMetricDisplay({
-  lowerLimit,
-  title,
-  unit,
-  upperLimit,
-  value,
-  setValue,
-}: Parameter) {
-  const colour = getColourFromValue(value);
+const DetailedAlarmMetricDisplay = ({ metric }: { metric: SetParameter }) => {
+  const { name, value, lowerLimit, upperLimit } = metric;
   const state = getStateFromValue(value);
 
-  function getColourFromValue(value: number) {
-    if (value < lowerLimit || value > upperLimit) {
-      return Colors.errorText;
-    }
-    return Colors.graphcolor;
-  }
-
-  function getStateFromValue(value: any) {
-    if (value < lowerLimit || value > upperLimit) {
+  function getStateFromValue(valueForState: number) {
+    if (valueForState < lowerLimit || valueForState > upperLimit) {
       return 'alarm';
     }
     return 'normal';
@@ -39,60 +22,12 @@ export default function DetailedAlarmMetricDisplay({
   return (
     <ParameterCard>
       <ParameterHeader>
-        <ParameterHeaderText>{title}</ParameterHeaderText>
+        <ParameterHeaderText>{name}</ParameterHeaderText>
       </ParameterHeader>
       <MetricView>
-        <MetricCard
-          upperLimit={upperLimit}
-          lowerLimit={lowerLimit}
-          flex={2}
-          setValue={setValue}
-          value={value}
-          unit={unit}
-          state={state}
-        />
+        <MetricCard state={state} metric={metric} />
       </MetricView>
     </ParameterCard>
   );
-}
-
-// export default function VentilationModeMetric({
-//   breathingType,
-//   controlMode,
-// }: VentilationMode) {
-//   const colour = getColourFromValue(value);
-//   const state = getStateFromValue(value);
-
-//   function getColourFromValue(value: number) {
-//     if (value < lowerLimit || value > upperLimit) {
-//       return Colors.errorText;
-//     }
-//     return Colors.graphcolor;
-//   }
-
-//   function getStateFromValue(value: any) {
-//     if (value < lowerLimit || value > upperLimit) {
-//       return 'alarm';
-//     }
-//     return 'normal';
-//   }
-
-//   return (
-//     <ParameterCard>
-//       <ParameterHeader>
-//         <ParameterHeaderText>{title}</ParameterHeaderText>
-//       </ParameterHeader>
-//       <MetricView>
-//         <MetricCard
-//           upperLimit={upperLimit}
-//           lowerLimit={lowerLimit}
-//           flex={2}
-//           setValue={setValue}
-//           value={value}
-//           unit={unit}
-//           state={state}
-//         />
-//       </MetricView>
-//     </ParameterCard>
-//   );
-// }
+};
+export default DetailedAlarmMetricDisplay;

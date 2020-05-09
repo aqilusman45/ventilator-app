@@ -10,8 +10,10 @@ export const CurrentValueContainer = styled.View`
   justify-content: center;
 `;
 
-export const Value = styled.Text`
-  color: ${(props) => props.color};
+export const Value = styled.Text<{
+  color: string;
+}>`
+  color: ${({ color }) => color};
   font-size: 50px;
 `;
 
