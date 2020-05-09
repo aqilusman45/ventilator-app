@@ -1,19 +1,23 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import DetailedAlarmMetricDisplay from '../components/DetailedAlarmMetricDisplay';
 import { convertArrayToMatrix } from '../utils/helpers';
-// import { alarmsMetrics } from '../../sample-data/data';
 import { Row } from '../components/Globals/Row';
 import initalVentilatorConfiguration from '../constants/InitialVentilatorConfiguration';
-import VentilatorConfiguration from 'src/interfaces/VentilatorConfiguration';
+import SetParameter from 'src/interfaces/SetParameter';
 
 export default function AlarmsScreen() {
-  const metrics = convertArrayToMatrix<VentilatorConfiguration>(
-    Object.values(initalVentilatorConfiguration).filter(
-      (item) => item.name !== undefined,
-    ),
-    4,
-  );
+  const [metrics, setMetrics] = useState<SetParameter[][] | null>(null);
+
+  useEffect(() => {
+    const setParameters: SetParameter[] = Object.values(
+      initalVentilatorConfiguration,
+    ).filter((item: SetParameter) => item.name !== undefined);
+
+    setMetrics(() => {
+      return convertArrayToMatrix<SetParameter>(setParameters, 4);
+    });
+  }, []);
 
   return (
     <View style={styles.gaugeContainer}>
@@ -21,30 +25,26 @@ export default function AlarmsScreen() {
         style={{
           flexGrow: 1,
         }}>
-        {metrics.map((row) => {
-          return (
-            <Row>
-              {row.map((metricToDisplay) => {
-                console.log(metricToDisplay);
-                // check if type is SetParameter
-                if (metricToDisplay.name) {
-                  return (
-                    <DetailedAlarmMetricDisplay
-                      title={metricToDisplay.name}
-                      value={metricToDisplay.value}
-                      unit={metricToDisplay.unit}
-                      setValue={metricToDisplay.setValue}
-                      lowerLimit={metricToDisplay.lowerLimit}
-                      upperLimit={metricToDisplay.upperLimit}
-                    />
-                  );
-                }
-
-                return null;
-              })}
-            </Row>
-          );
-        })}
+        {metrics &&
+          metrics?.map((row, index) => {
+            return (
+              <Row key={row[index]?.name || ''}>
+                {row.map((metricToDisplay) => {
+                  console.log(metricToDisplay);
+                  // check if type is SetParameter
+                  if (metricToDisplay.name) {
+                    return (
+                      <DetailedAlarmMetricDisplay
+                        key={metricToDisplay.name}
+                        metric={metricToDisplay}
+                      />
+                    );
+                  }
+                  return null;
+                })}
+              </Row>
+            );
+          })}
       </ScrollView>
     </View>
   );
