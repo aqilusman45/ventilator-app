@@ -6,6 +6,7 @@ import { Row } from '../components/Globals/Row';
 import initalVentilatorConfiguration from '../constants/InitialVentilatorConfiguration';
 import SetParameter from '../interfaces/SetParameter';
 import { useReading } from '../logic/useReading';
+import { ConnectionsHeader } from '../components/ConnectionsHeader';
 
 export default function AlarmsScreen() {
   const reading = useReading();
@@ -32,32 +33,35 @@ export default function AlarmsScreen() {
   }, [readingValues]);
 
   return (
-    <View style={styles.gaugeContainer}>
-      <ScrollView
-        style={{
-          flexGrow: 1,
-        }}>
-        {metrics &&
-          metrics?.map((row, index) => {
-            return (
-              <Row key={row[index]?.name || ''}>
-                {row.map((metricToDisplay) => {
-                  console.log(metricToDisplay);
-                  // check if type is SetParameter
-                  if (metricToDisplay.name) {
-                    return (
-                      <DetailedAlarmMetricDisplay
-                        key={metricToDisplay.name}
-                        metric={metricToDisplay}
-                      />
-                    );
-                  }
-                  return null;
-                })}
-              </Row>
-            );
-          })}
-      </ScrollView>
+    <View
+      style={{
+        flex: 1,
+      }}>
+      <ConnectionsHeader />
+      <View style={styles.gaugeContainer}>
+        <ScrollView>
+          {metrics &&
+            metrics?.map((row, index) => {
+              return (
+                <Row key={row[index]?.name || ''}>
+                  {row.map((metricToDisplay) => {
+                    console.log(metricToDisplay);
+                    // check if type is SetParameter
+                    if (metricToDisplay.name) {
+                      return (
+                        <DetailedAlarmMetricDisplay
+                          key={metricToDisplay.name}
+                          metric={metricToDisplay}
+                        />
+                      );
+                    }
+                    return null;
+                  })}
+                </Row>
+              );
+            })}
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -66,9 +70,7 @@ const styles = StyleSheet.create({
   gaugeContainer: {
     marginBottom: 15,
     marginTop: 15,
-    flex: 1,
-    justifyContent: 'center',
+    flex: 9,
     width: '100%',
-    alignSelf: 'center',
   },
 });
