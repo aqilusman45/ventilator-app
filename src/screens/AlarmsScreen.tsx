@@ -39,28 +39,28 @@ export default function AlarmsScreen() {
       }}>
       <ConnectionsHeader />
       <View style={styles.gaugeContainer}>
-        <ScrollView>
-          {metrics &&
-            metrics?.map((row, index) => {
-              return (
-                <Row key={row[index]?.name || ''}>
-                  {row.map((metricToDisplay) => {
-                    console.log(metricToDisplay);
-                    // check if type is SetParameter
-                    if (metricToDisplay.name) {
-                      return (
-                        <DetailedAlarmMetricDisplay
-                          key={metricToDisplay.name}
-                          metric={metricToDisplay}
-                        />
-                      );
-                    }
-                    return null;
-                  })}
-                </Row>
-              );
-            })}
-        </ScrollView>
+        {/* <ScrollView> */}
+        {metrics &&
+          metrics?.map((row, index) => {
+            return (
+              <Row key={row[index]?.name || ''}>
+                {row.map((metricToDisplay) => {
+                  console.log(metricToDisplay);
+                  // check if type is SetParameter
+                  if (metricToDisplay.name) {
+                    return (
+                      <DetailedAlarmMetricDisplay
+                        key={metricToDisplay.name}
+                        metric={metricToDisplay}
+                      />
+                    );
+                  }
+                  return null;
+                })}
+              </Row>
+            );
+          })}
+        {/* </ScrollView> */}
       </View>
     </View>
   );
