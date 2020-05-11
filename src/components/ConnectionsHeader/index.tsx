@@ -11,12 +11,7 @@ function updateAlarmsUI(alarms: string[]) {
     return (
       <ConnectionContainer key={warning}>
         {ALARMS[warning].icon(connectionStatus)}
-        <ConnectionLabel
-          fontSize={
-            warning.length > 20 && ALARMS[warning].status.length > 20
-              ? FontSize.connectionLabelLongText
-              : FontSize.connectionLabelShortText
-          }>
+        <ConnectionLabel fontSize={FontSize.connectionLabelText}>
           {connectionStatus ? warning : ALARMS[warning].status}
         </ConnectionLabel>
       </ConnectionContainer>

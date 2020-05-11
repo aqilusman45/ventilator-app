@@ -1,5 +1,4 @@
 export default {
-  connectionLabelLongText: '15px',
-  connectionLabelShortText: '18px',
+  connectionLabelText: '15px',
   IconSize: 50,
 };
