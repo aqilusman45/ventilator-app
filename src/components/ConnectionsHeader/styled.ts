@@ -4,8 +4,6 @@ export const Header = styled.View`
   flex: 1;
   padding-top: 50px;
   padding-bottom: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
   flex-direction: row;
   background-color: #354650;
   justify-content: space-evenly;
@@ -17,7 +15,6 @@ export const ConnectionContainer = styled.View`
   justify-content: center;
   align-self: center;
   flex-direction: column;
-  padding-left: 30px;
   text-align: center;
   flex: 1;
 `;
