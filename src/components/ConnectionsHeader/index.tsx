@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, ConnectionContainer, ConnectionLabel } from './styled';
 import { useReading } from '../../logic/useReading';
 import { ALARMS } from './icons';
+import FontSize from '../../constants/FontSize';
 
 function updateAlarmsUI(alarms: string[]) {
   return Object.keys(ALARMS).map((warning) => {
@@ -10,7 +11,12 @@ function updateAlarmsUI(alarms: string[]) {
     return (
       <ConnectionContainer key={warning}>
         {ALARMS[warning].icon(connectionStatus)}
-        <ConnectionLabel>
+        <ConnectionLabel
+          fontSize={
+            warning.length > 20 && ALARMS[warning].status.length > 20
+              ? FontSize.connectionLabelLongText
+              : FontSize.connectionLabelShortText
+          }>
           {connectionStatus ? warning : ALARMS[warning].status}
         </ConnectionLabel>
       </ConnectionContainer>
