@@ -3,13 +3,17 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Feather from 'react-native-vector-icons/Feather';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontSize from '../../constants/FontSize';
 
 export const ALARMS = {
   'Circuit Integrity Failed': {
     status: 'Circuit Integrity Passing',
     icon: (status: boolean) => (
       <Octicons
-        size={50}
+        size={FontSize.IconSize}
         name="circuit-board"
         color={status ? 'red' : 'green'}
       />
@@ -18,14 +22,18 @@ export const ALARMS = {
   'Battery in Use': {
     status: 'Battery Disconnected',
     icon: (status: boolean) => (
-      <Entypo size={50} name="battery" color={status ? 'red' : 'green'} />
+      <Entypo
+        size={FontSize.IconSize}
+        name="battery"
+        color={status ? 'red' : 'green'}
+      />
     ),
   },
   'Patient Vent Circuit Disconnected': {
     status: 'Patient Vent Circuit Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={50}
+        size={FontSize.IconSize}
         name="heart-pulse"
         color={status ? 'red' : 'green'}
       />
@@ -35,7 +43,7 @@ export const ALARMS = {
     status: 'Flow Sensor Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={50}
+        size={FontSize.IconSize}
         name="gauge"
         color={status ? 'red' : 'green'}
       />
@@ -44,15 +52,89 @@ export const ALARMS = {
   'Pressure Sensor Disconnected': {
     status: 'Pressure Sensor Connected',
     icon: (status: boolean) => (
-      <AntDesign size={50} name="upcircleo" color={status ? 'red' : 'green'} />
+      <AntDesign
+        size={FontSize.IconSize}
+        name="upcircleo"
+        color={status ? 'red' : 'green'}
+      />
     ),
   },
   'Oxygen Sensor Disconnected': {
     status: 'Oxygen Sensor Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={50}
+        size={FontSize.IconSize}
         name="gas-cylinder"
+        color={status ? 'red' : 'green'}
+      />
+    ),
+  },
+  'Oxygen Failure': {
+    status: 'Oxygen Intact',
+    icon: (status: boolean) => {
+      switch (status) {
+        case true:
+          return (
+            <Feather
+              size={FontSize.IconSize}
+              name="alert-circle"
+              color={'red'}
+            />
+          );
+        case false:
+          return (
+            <AntDesign
+              size={FontSize.IconSize}
+              name="checkcircleo"
+              color={'green'}
+            />
+          );
+        default:
+          return null;
+      }
+    },
+  },
+  'Mechanical Integrity Failed': {
+    status: 'Mechanical Integrity Intact',
+    icon: (status: boolean) => (
+      <FontAwesome
+        size={FontSize.IconSize}
+        name="gears"
+        color={status ? 'red' : 'green'}
+      />
+    ),
+  },
+  'Homing not Done': {
+    status: 'Homing Done',
+    icon: (status: boolean) => {
+      switch (status) {
+        case true:
+          return (
+            <Entypo
+              size={FontSize.IconSize}
+              name="circle-with-cross"
+              color={'red'}
+            />
+          );
+        case false:
+          return (
+            <MaterialIcons
+              size={FontSize.IconSize}
+              name="done"
+              color={'green'}
+            />
+          );
+        default:
+          return null;
+      }
+    },
+  },
+  '96 Hours of Operation': {
+    status: 'Hrs of Operation',
+    icon: (status: boolean) => (
+      <Entypo
+        size={FontSize.IconSize}
+        name="cycle"
         color={status ? 'red' : 'green'}
       />
     ),
