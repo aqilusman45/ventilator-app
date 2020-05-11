@@ -13,7 +13,7 @@ export const ALARMS = {
     status: 'Circuit Integrity Passing',
     icon: (status: boolean) => (
       <Octicons
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="circuit-board"
         color={status ? 'red' : 'green'}
       />
@@ -23,7 +23,7 @@ export const ALARMS = {
     status: 'Battery Disconnected',
     icon: (status: boolean) => (
       <Entypo
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="battery"
         color={status ? 'red' : 'green'}
       />
@@ -33,7 +33,7 @@ export const ALARMS = {
     status: 'Patient Vent Circuit Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="heart-pulse"
         color={status ? 'red' : 'green'}
       />
@@ -43,7 +43,7 @@ export const ALARMS = {
     status: 'Flow Sensor Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="gauge"
         color={status ? 'red' : 'green'}
       />
@@ -53,7 +53,7 @@ export const ALARMS = {
     status: 'Pressure Sensor Connected',
     icon: (status: boolean) => (
       <AntDesign
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="upcircleo"
         color={status ? 'red' : 'green'}
       />
@@ -63,7 +63,7 @@ export const ALARMS = {
     status: 'Oxygen Sensor Connected',
     icon: (status: boolean) => (
       <MaterialCommunityIcons
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="gas-cylinder"
         color={status ? 'red' : 'green'}
       />
@@ -76,7 +76,7 @@ export const ALARMS = {
         case true:
           return (
             <Feather
-              size={FontSize.IconSize}
+              size={FontSize.iconSize}
               name="alert-circle"
               color={'red'}
             />
@@ -84,7 +84,7 @@ export const ALARMS = {
         case false:
           return (
             <AntDesign
-              size={FontSize.IconSize}
+              size={FontSize.iconSize}
               name="checkcircleo"
               color={'green'}
             />
@@ -98,7 +98,7 @@ export const ALARMS = {
     status: 'Mechanical Integrity Intact',
     icon: (status: boolean) => (
       <FontAwesome
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="gears"
         color={status ? 'red' : 'green'}
       />
@@ -111,7 +111,7 @@ export const ALARMS = {
         case true:
           return (
             <Entypo
-              size={FontSize.IconSize}
+              size={FontSize.iconSize}
               name="circle-with-cross"
               color={'red'}
             />
@@ -119,7 +119,7 @@ export const ALARMS = {
         case false:
           return (
             <MaterialIcons
-              size={FontSize.IconSize}
+              size={FontSize.iconSize}
               name="done"
               color={'green'}
             />
@@ -133,7 +133,7 @@ export const ALARMS = {
     status: 'Hrs of Operation',
     icon: (status: boolean) => (
       <Entypo
-        size={FontSize.IconSize}
+        size={FontSize.iconSize}
         name="cycle"
         color={status ? 'red' : 'green'}
       />

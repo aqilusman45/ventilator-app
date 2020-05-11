@@ -1,4 +1,4 @@
 export default {
   connectionLabelText: '15px',
-  IconSize: 50,
+  iconSize: 50,
 };
